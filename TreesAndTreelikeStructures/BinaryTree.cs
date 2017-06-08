@@ -2,21 +2,6 @@
 
 public class BinaryTree<T> where T : IComparable
 {
-    private Node rootNode;
-    private int Count;
-
-    private class Node
-    {
-        public Node LeftChild { get; set; }
-        public Node RightChild { get; set; }
-        public T Value { get; set; }
-
-        public Node(T value)
-        {
-            this.Value = value;
-        }
-    }
-
     public T Value { get; set; }
     public BinaryTree<T> LeftChild { get; set; }
     public BinaryTree<T> RightChild { get; set; }
@@ -26,36 +11,6 @@ public class BinaryTree<T> where T : IComparable
         this.Value = value;
         this.RightChild = rightChild;
         this.LeftChild = leftChild;
-    }
-
-    public void Insert(T value)
-    {
-        Node newNode = new Node(value);
-        if (Count == 0)
-        {
-            this.rootNode = newNode;
-            return;
-        }
-
-        Node currentNode = rootNode;
-        Node parent = rootNode;
-        while (true)
-        {
-            if (currentNode.Value.CompareTo(newNode.Value) < 0)
-            {
-                parent = currentNode;
-                currentNode = currentNode.LeftChild;
-            } else if (currentNode.Value.CompareTo(newNode.Value) > 0)
-            {
-                parent = currentNode;
-                currentNode = currentNode.RightChild;
-            }
-            if (currentNode == null)
-            {
-                currentNode = newNode;
-                return;
-            }
-        }
     }
 
     public void PrintIndentedPreOrder(int indent = 0)
